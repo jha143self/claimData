@@ -234,21 +234,23 @@ app.post("/fulfillment", async function (req, res) {
       
     };
     return res.json(msg);
-    if(claimno){
-      claimno=CreateClaim(req. res)
-      msg = {
-        "speech": "",
-        "displayText": "",
-        "messages": [{
-          "type": 0,
-          "platform": "facebook",
-          "speech": "Your Claim number is CL  "+claimno
-        }]
-        
-      };
-      return res.json(msg);
-    }if(claimno){
-      var price=priceConverter(req,res);
+  }else if(intentFrom === 'input.GlassSize'){
+    claimno=CreateClaim(req. res)
+    msg = {
+      "speech": "",
+      "displayText": "",
+      "messages": [{
+        "type": 0,
+        "platform": "facebook",
+        "speech": "Your Claim number is CL  "+claimno
+      }]
+      
+    };
+    return res.json(msg);
+  }
+  else if(intentFrom === 'input.GlassSize'){
+    claimno=CreateClaim(req. res)
+    var price=priceConverter(req,res);
       msg = {
         "speech": "",
         "displayText": "",
@@ -261,8 +263,6 @@ app.post("/fulfillment", async function (req, res) {
         
       };
       return res.json(msg);
-    }
-    return res.json(msg);
   }
 
   else if(intentFrom === 'input.OtherOptionRes') {

@@ -178,7 +178,7 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
 
                                     if (msgfulfill && msgfulfill.type == 4 && msgfulfill.hasOwnProperty("payload") && msgfulfill.payload.hasOwnProperty("facebook")) {
                                         //Quick Replies
-                                        if (msgfulfill.payload.facebook.hasOwnProperty("quick_replies")) {
+                                        if (msgfulfill.payload.facebook.hasOwnProperty("quick_replies") && !response.result.fulfillment.messages[i].replies.indexOf("Single Hung") != -1 && !response.result.fulfillment.messages[i].replies.indexOf("Float Glass") != -1) {
                                             isQuickReply = (msgfulfill.payload.facebook.quick_replies.length > 0) ? true : false;
 
                                         }
