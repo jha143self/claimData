@@ -216,7 +216,9 @@ app.post("/fulfillment", async function (req, res) {
   else if(intentFrom === 'input.GlassSize') {
     claimno=CreateClaim(req,res);
    var price=priceConverter(req,res);
-     msg={
+   console(claimno+"Rakkesh Jha"+price);
+   if(claimno!=null && price!=null){
+   msg={
       "speech": "",
        "displayText": "",
        "messages": [{
@@ -231,6 +233,7 @@ app.post("/fulfillment", async function (req, res) {
       }]
       
     };
+  }
     return res.json(msg);
   }
 
