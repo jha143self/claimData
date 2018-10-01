@@ -73,7 +73,7 @@ app.get('/chat', function (req, res) {
 });
 
 
-
+var claimno;
 
 app.post("/fulfillment", async function (req, res) {
 
@@ -154,6 +154,115 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }
 
+  else if(intentFrom === 'upload_image') {
+    msg = {
+      "speech": "",
+      "displayText": "",
+      "messages": [{
+        "type": 0,
+        "platform": "facebook",
+        "speech": "Please upload the picture of the damaged glass?"
+      }]
+      
+    };
+    return res.json(msg);
+  }else if(intentFrom === 'input.damaged') {
+    msg = {
+      "speech": "",
+      "displayText": "",
+      "messages": [{
+        "type": 0,
+        "platform": "facebook",
+        "speech": "Can you validate the type of window? You can select another one if the suggested window type is not correct"
+      
+      },{
+        "type":4,
+        "platform":"facebook",
+        "payload":{
+          "facebook":{
+            "text":"Is it related to your Auto, Home or Businessowners policy?",
+            "quick_replies_img":[{
+              "content_type":"text",
+              "title":"Single Hung",
+              "payload":"Single Hung"
+            }]}}}]
+      
+    };
+    return res.json(msg);
+  }
+  else if(intentFrom === 'input.windows') {
+    msg = {
+      "speech": "",
+      "displayText": "",
+      "messages": [{
+        "type":4,
+        "platform":"facebook",
+        "payload":{
+          "facebook":{
+            "text":"Can you validate the type of glass? You can select another one if the suggested glass type is not correct",
+            "quick_replies_img":[{
+              "content_type":"text",
+              "title":"Float Glass",
+              "payload":"Float Glass"
+            }]}}}]
+      
+    };
+    return res.json(msg);
+  }
+   else if(intentFrom === 'upload_image') {
+    msg = {
+      "speech": "",
+      "displayText": "",
+      "messages": [{
+        "type": 0,
+        "platform": "facebook",
+        "speech": "Please upload the picture of the damaged glass?"
+      }]
+      
+    };
+    return res.json(msg);
+  }
+  else if(intentFrom === 'input.GlassSize') {
+    msg = {
+      "speech": "",
+      "displayText": "",
+      "messages": [{
+        "type": 0,
+        "platform": "facebook",
+        "speech": "That's it John! We're all set! Here you go:"
+      }]
+      
+    };
+    if(claimno){
+      claimno=CreateClaim(req. res)
+      msg = {
+        "speech": "",
+        "displayText": "",
+        "messages": [{
+          "type": 0,
+          "platform": "facebook",
+          "speech": "Your Claim number is CL  "+claimno
+        }]
+        
+      };
+    }if(claimno){
+      var price=priceConverter(req,res);
+      msg = {
+        "speech": "",
+        "displayText": "",
+        "messages": [{
+          "type": 0,
+          "platform": "facebook",
+          "speech": "Based on the quotes received from the market, you are entitled to a claims payment of "+price+
+          ". Based on the quotes received from the market, you are entitled to a claims payment of USD 650. "
+        }]
+        
+      };
+
+    }
+    return res.json(msg);
+  }
+
   else if(intentFrom === 'input.OtherOptionRes') {
     msg = {
       "speech": "",
@@ -187,7 +296,114 @@ app.post("/fulfillment", async function (req, res) {
 });
 //POST Call Endpoint
 
+function CreateClaim(req,res)
+{
+  //console.log('inside create claim------------',req);
+  var options = { method: 'POST',
+     
+  url: 'http://35.154.116.87:8080/cc/service/edge/fnol/cfnol',
 
+  headers:
+
+   { 'postman-token': 'ff149a5b-daaf-0000-0b8c-5301c162be75',
+
+     'cache-control': 'no-cache',
+
+     authorization: 'Basic c3U6Z3c=',
+
+     accept: 'application/json',
+
+     'content-type': 'application/json' },
+
+  body:
+
+   { jsonrpc: '2.0',
+
+     method: 'createClaimForHomeOwners',
+
+     params:
+
+      [ { lossDate: '2018-09-27T00:00:00Z',
+
+          lossType: 'PR',
+
+          lossCause: 'glassbreakage',
+
+          description: 'windowcrashed' } ] },
+
+  json: true };
+
+ 
+
+request(options, function (error, response, body) {
+  console.log('2------------',body);
+  if (error) throw new Error(error);
+console.log("Rakesh jha");
+  var claimno = body.result;
+  console.log(claimno);
+  
+  console.log('3------------',claimno);
+          return res.json({"result":{"fulfillment": {
+            "speech": "",
+            "messages": [
+              {
+                "type": 0,
+                "platform": "facebook",
+                "speech": "Your Claim number is "+claimno
+              },
+              {
+                "type": 0,
+                "speech": ""
+              }
+            ]
+          }}});
+      
+});
+
+}
+
+function priceConverter(req,res){
+  var options = { method: 'POST',
+  url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
+  headers: 
+   { 'postman-token': '225193bc-ade0-bb34-6a7e-b6e8851b7c3b',
+     'cache-control': 'no-cache',
+     'content-type': 'application/json' },
+  body: 
+   { height: 70,
+     width: 30,
+     thickness: 33,
+     glassType: 'Safety Laminated Glass',
+     windowType: 'Double Hung Windows' },
+  json: true };
+
+request(options, function (error, response, body) {
+  if (error) throw new Error(error);
+
+  var price = body.result;
+  console.log(body.result);
+  
+  console.log('price 3------------',price);
+          return res.json({"result":{"fulfillment": {
+            "speech": "",
+            "messages": [
+              {
+                "type": 0,
+                "platform": "facebook",
+                "speech": "Based on the quotes received from the market, you are entitled to a claims payment of USD "+ price +"."+
+                           "We've added an additional 10% to the market rates to cover any additional expenses that you may incur "
+              },
+              {
+                "type": 0,
+                "speech": ""
+              }
+            ]
+          }}});
+
+  
+});
+
+}
 
 
 app.listen(process.env.PORT || 9000);
