@@ -38,6 +38,15 @@ app.post("/webhook",async (req,res)=>{
   };
   await requestAPI(options, function (error, response, body) {
   console.log('1------------',body);
+  let intentFrom = req.body.result.action;
+  let intentQuery = req.body.result.resolvedQuery;
+  let intentParam = req.body.result.parameters;
+  var objData = null;
+  var type = null;
+  var smsType = null;
+  var smsContent = '';
+  
+  var msg = '';
   if (intentFrom === 'input.welcome' ) {
     msg = {
       "speech": "",
