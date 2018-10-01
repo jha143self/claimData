@@ -233,6 +233,7 @@ app.post("/fulfillment", async function (req, res) {
       }]
       
     };
+    return res.json(msg);
     if(claimno){
       claimno=CreateClaim(req. res)
       msg = {
@@ -245,6 +246,7 @@ app.post("/fulfillment", async function (req, res) {
         }]
         
       };
+      return res.json(msg);
     }if(claimno){
       var price=priceConverter(req,res);
       msg = {
@@ -258,7 +260,7 @@ app.post("/fulfillment", async function (req, res) {
         }]
         
       };
-
+      return res.json(msg);
     }
     return res.json(msg);
   }
