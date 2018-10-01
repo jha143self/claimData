@@ -317,20 +317,7 @@ console.log("Rakesh jha");
   console.log(claimno);
   
   console.log('3------------',claimno);
-          return res.json({"result":{"fulfillment": {
-            "speech": "",
-            "messages": [
-              {
-                "type": 0,
-                "platform": "facebook",
-                "speech": "Your Claim number is "+claimno
-              },
-              {
-                "type": 0,
-                "speech": ""
-              }
-            ]
-          }}});
+          return claimno;
       
 });
 
@@ -357,26 +344,12 @@ request(options, function (error, response, body) {
   var price = body.result;
   console.log(body.result);
   
-  console.log('price 3------------',price);
-          return res.json({"result":{"fulfillment": {
-            "speech": "",
-            "messages": [
-              {
-                "type": 0,
-                "platform": "facebook",
-                "speech": "Based on the quotes received from the market, you are entitled to a claims payment of USD "+ price +"."+
-                           "We've added an additional 10% to the market rates to cover any additional expenses that you may incur "
-              },
-              {
-                "type": 0,
-                "speech": ""
-              }
-            ]
-          }}});
-
-  
+  return price;
+      
 });
 
+
+  
 }
 
 
