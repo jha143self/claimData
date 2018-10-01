@@ -91,7 +91,7 @@ app.post("/fulfillment", async function (req, res) {
   var type = null;
   var smsType = null;
   var smsContent = '';
-  var resp = commonFiles.WelcomeMsg();
+  
   var msg = '';
   
   
