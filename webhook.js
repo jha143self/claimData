@@ -26,15 +26,7 @@ app.use(express.static(__dirname));
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
   extended: true
 }));
- let intentFrom = req.body.result.action;
-  let intentQuery = req.body.result.resolvedQuery;
-  let intentParam = req.body.result.parameters;
-  var objData = null;
-  var type = null;
-  var smsType = null;
-  var smsContent = '';
-  var resp = commonFiles.WelcomeMsg();
-  var msg = '';
+
 
 app.post("/webhook",async (req,res)=>{
   var options = {
