@@ -216,15 +216,7 @@ app.post("/fulfillment", async function (req, res) {
   else if(intentFrom === 'input.GlassSize') {
     claimno=CreateClaim(req,res);
    var price=priceConverter(req,res);
-    // msg = {
-    //   "speech": "",
-    //   "displayText": "",
-    //   "messages": [{
-    //     "type": 0,
-    //     "platform": "facebook",
-    //     "speech": "That's it John! We're all set! Here you go:"
-    //   },
-    msg={
+     msg={
       "speech": "",
        "displayText": "",
        "messages": [{

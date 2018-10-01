@@ -157,8 +157,8 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
                                         isCardorCarousel = true;
                                     }
                                     if (response.result.fulfillment.messages[i].type == 2) {
-                                        if (response.result.fulfillment.messages[i].replies && response.result.fulfillment.messages[i].replies.indexOf("Buisness") != -1
-                                    ||response.result.fulfillment.messages[i].replies && response.result.fulfillment.messages[i].replies.indexOf("Self Quotes") != -1){
+                                        
+                                    if(response.result.fulfillment.messages[i].replies && response.result.fulfillment.messages[i].replies.indexOf("Self Quotes") != -1){
                                         response.result.fulfillment.messages[i].replies;
                                         isQuickReplyFromApiai = true;
                                            }else if(response.result.fulfillment.messages[i].replies && response.result.fulfillment.messages[i].replies.indexOf("Single Hung") != -1){
