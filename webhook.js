@@ -168,7 +168,7 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }else if(intentFrom === 'input.damaged') {
     msg = {
-      "speech": "",
+  
     "messages": [
      
       {
@@ -178,10 +178,6 @@ app.post("/fulfillment", async function (req, res) {
         "replies": [
           "Single Hung"
         ]
-      }, {
-        "type": 0,
-        "platform": "facebook",
-        "speech": "Hold on for a moment while we get the details of the damaged glass."
       }
     ]
 
@@ -220,14 +216,15 @@ app.post("/fulfillment", async function (req, res) {
   else if(intentFrom === 'input.GlassSize') {
     claimno=CreateClaim(req,res);
    var price=priceConverter(req,res);
-    msg = {
-      "speech": "",
-      "displayText": "",
-      "messages": [{
-        "type": 0,
-        "platform": "facebook",
-        "speech": "That's it John! We're all set! Here you go:"
-      },{
+    // msg = {
+    //   "speech": "",
+    //   "displayText": "",
+    //   "messages": [{
+    //     "type": 0,
+    //     "platform": "facebook",
+    //     "speech": "That's it John! We're all set! Here you go:"
+    //   },
+    msg={
         "type": 0,
         "platform": "facebook",
         "speech": "Your Claim number is CL  "+claimno

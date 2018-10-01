@@ -195,6 +195,8 @@
 <script type="text/javascript" src="https://lpcdn.lpsnmedia.net/api/chat/public/lpChat.min.js"></script>
 
 <script>
+
+
      var loadFile = function(event) {
        
       var reader = new FileReader();
@@ -210,5 +212,21 @@
       reader.readAsDataURL(event.target.files[0]);
     };
   </script>
-
+<script>
+ function windowClose()
+{
+  window.innerWidth = 100;
+    window.innerHeight = 100;
+    window.screenX = screen.width;
+    window.screenY = screen.height;
+    alwaysLowered = true;
+}
+function windowMin() {
+  window.innerWidth = 100;
+    window.innerHeight = 100;
+    window.screenX = screen.width;
+    window.screenY = screen.height;
+    alwaysLowered = true;
+}
+</script>
 </html>
