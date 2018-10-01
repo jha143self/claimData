@@ -19,6 +19,7 @@
     "express-session": "1.15.6",
     "redis": "^2.8.0",
     "request": "^2.88.0",
+    "sentiment": "^5.0.1",
     "simple-oauth2": "^2.2.1",
     "xlsx-to-json": "^0.3.0"
   },

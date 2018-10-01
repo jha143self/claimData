@@ -1,43 +1,33 @@
-var request=require('request');
-var express = require('express'),
-  app = express(),
-  http = require('http'),
-  httpServer = http.Server(app),
-  
-  session = require('express-session');
 
-var router = express.Router();
-// Moment JS
-
-
-
-
+const Sentiment = require('sentiment');
+var express = require('express');
+var session = require('express-session')
 var bodyParser = require('body-parser');
-var fs = require('fs');
-const requestAPI = require('request');
-app.use(bodyParser.json());
-app.use(session({
-  secret: 'login',
-  key: 'opty'
-}));
+var requestAPI = require('request');
+
+
+
+
+app = express();
+
+
+var port = process.env.PORT || 5000;
+
 app.use(express.static(__dirname));
-// app.use(passport.initialize());
-// app.use(passport.session());
-app.use(bodyParser.urlencoded({ // to support URL-encoded bodies
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.post("/fulfillment", async function (req, res) {
 
-app.post("/webhook",async (req,res)=>{
-  var options = {
-    url: "https://api.dialogflow.com/v1/query?v=20150910",
-    method: "POST",
-    headers: { 'Authorization': 'Bearer ' + '60da65e2782f4c1ab12a48a2f56cdc3d', 'Content-Type': 'application/json'},
-    body: req.body,
-    json: true
-  };
-  await requestAPI(options, function (error, response, body) {
-  console.log('1------------',body);
+
+  
+  console.log("body", JSON.stringify(req.body));
+  console.log(JSON.stringify(req.body.result.action));
+  var sessionId = req.body.sessionId;
+  console.log("sessionId", sessionId);
+  console.log('Inside Policy API');
   let intentFrom = req.body.result.action;
   let intentQuery = req.body.result.resolvedQuery;
   let intentParam = req.body.result.parameters;
@@ -45,8 +35,10 @@ app.post("/webhook",async (req,res)=>{
   var type = null;
   var smsType = null;
   var smsContent = '';
-  
+  var resp = commonFiles.WelcomeMsg();
   var msg = '';
+  
+  
   if (intentFrom === 'input.welcome' ) {
     msg = {
       "speech": "",
@@ -106,144 +98,40 @@ app.post("/webhook",async (req,res)=>{
     return res.json(msg);
   }
 
-  else if(intentFrom === 'input.upload_image') {
-    var claimdata=CreateClaim()
-    if(claimdata)    {
+  else if(intentFrom === 'input.OtherOptionRes') {
     msg = {
       "speech": "",
       "displayText": "",
-      "messages": [{
-        "type": 0,
-        "platform": "facebook",
-        "speech": "Your Cliam no is "+claimdata
-      }]
-      
-    };
+      "messages": [{  
+      "type":4,
+      "platform":"facebook",
+      "payload":{
+        "facebook":{
+          "text":"Please select an option for us to proceed further",
+          "quick_replies_img":[{
+            "content_type":"text",
+            "title":"Cash Payment of USD",
+            "payload":"Cash Payment of USD"
+          },{
+            "content_type":"text",
+            "title":"2 weeks repair",
+            "payload":"2 weeks repair"
+          },{
+            "content_type":"text",
+            "title":"Self Quotes",
+            "payload":"Self Quotes"
+          }]
+        }
+      }
+    }
+    ]};
     return res.json(msg);
   }
-  if(claimdata){
-var priceve=priceConverter();
-msg = {
-  "speech": "",
-  "displayText": "",
-  "messages": [{
-    "type": 0,
-    "platform": "facebook",
-    "speech": "Your Cliam price "+ priceve
-  }]
-  
-};
-  }
-  }
- 
- 
-  
-  });
-})
-
-var jsonIncompleteTran = [];
-
-
-
-
-
-app.post('/claimCreate',function (req, res){
-      
-})
-
-var lossDate;
-var lossType;
-var lossCause;
-var description
-
-function CreateClaim()
-{
-  //console.log('inside create claim------------',req);
-  var options = { method: 'POST',
-     
-  url: 'http://35.154.116.87:8080/cc/service/edge/fnol/cfnol',
-
-  headers:
-
-   { 'postman-token': 'ff149a5b-daaf-0000-0b8c-5301c162be75',
-
-     'cache-control': 'no-cache',
-
-     authorization: 'Basic c3U6Z3c=',
-
-     accept: 'application/json',
-
-     'content-type': 'application/json' },
-
-  body:
-
-   { jsonrpc: '2.0',
-
-     method: 'createClaimForHomeOwners',
-
-     params:
-
-      [ { lossDate: '2018-09-27T00:00:00Z',
-
-          lossType: 'PR',
-
-          lossCause: 'glassbreakage',
-
-          description: 'windowcrashed' } ] },
-
-  json: true };
-
- 
-  var claimno
-request(options, function (error, response, body) {
-  console.log('2------------',body);
-  if (error) throw new Error(error);
-console.log("Rakesh jha");
-claimno= body.result;
-  console.log(claimno);
-  
-  console.log('3------------',claimno);
-   return claimno;
-      
-});
-
-}
-
-function priceConverter(){
-  var options = { method: 'POST',
-  url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
-  headers: 
-   { 'postman-token': '225193bc-ade0-bb34-6a7e-b6e8851b7c3b',
-     'cache-control': 'no-cache',
-     'content-type': 'application/json' },
-  body: 
-   { height: 70,
-     width: 30,
-     thickness: 33,
-     glassType: 'Safety Laminated Glass',
-     windowType: 'Double Hung Windows' },
-  json: true };
-
-request(options, function (error, response, body) {
-  if (error) throw new Error(error);
-
-  var price = body.result;
-  console.log(body.result);
-  
-  console.log('price 3------------',price);
-
-  return price;
   
 });
-
-}
-
+//POST Call Endpoint
 
 
-app.listen(process.env.PORT || 9000);
+app.listen(port);
 
 
-
-
-
-   
