@@ -313,7 +313,7 @@ request(options, function (error, response, body) {
   console.log('2------------',body);
   if (error) throw new Error(error);
 console.log("Rakesh jha");
-  var claimno = body.result;
+claimno = body.result;
   console.log(claimno);
   
   console.log('3------------',claimno);
