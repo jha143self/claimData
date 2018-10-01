@@ -223,6 +223,8 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }
   else if(intentFrom === 'input.GlassSize') {
+    claimno=CreateClaim(req,res);
+   var price=priceConverter(req,res);
     msg = {
       "speech": "",
       "displayText": "",
@@ -230,39 +232,19 @@ app.post("/fulfillment", async function (req, res) {
         "type": 0,
         "platform": "facebook",
         "speech": "That's it John! We're all set! Here you go:"
-      }]
-      
-    };
-    return res.json(msg);
-  }else if(intentFrom === 'input.GlassSize'){
-    claimno=CreateClaim(req. res)
-    msg = {
-      "speech": "",
-      "displayText": "",
-      "messages": [{
+      },{
         "type": 0,
         "platform": "facebook",
         "speech": "Your Claim number is CL  "+claimno
+      },{
+        "type": 0,
+        "platform": "facebook",
+        "speech": "Based on the quotes received from the market, you are entitled to a claims payment of "+price+
+        ". Based on the quotes received from the market, you are entitled to a claims payment of USD 650. "
       }]
       
     };
     return res.json(msg);
-  }
-  else if(intentFrom === 'input.GlassSize'){
-    claimno=CreateClaim(req. res)
-    var price=priceConverter(req,res);
-      msg = {
-        "speech": "",
-        "displayText": "",
-        "messages": [{
-          "type": 0,
-          "platform": "facebook",
-          "speech": "Based on the quotes received from the market, you are entitled to a claims payment of "+price+
-          ". Based on the quotes received from the market, you are entitled to a claims payment of USD 650. "
-        }]
-        
-      };
-      return res.json(msg);
   }
 
   else if(intentFrom === 'input.OtherOptionRes') {
