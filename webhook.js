@@ -169,44 +169,39 @@ app.post("/fulfillment", async function (req, res) {
   }else if(intentFrom === 'input.damaged') {
     msg = {
       "speech": "",
-      "displayText": "",
-      "messages": [{
+    "messages": [
+     
+      {
+        "type": 2,
+        "platform": "facebook",
+        "title": "Can you validate the type of window? You can select another one if the suggested window type is not correct",
+        "replies": [
+          "Single Hung"
+        ]
+      }, {
         "type": 0,
         "platform": "facebook",
-        "speech": "Can you validate the type of window? You can select another one if the suggested window type is not correct"
-      
-      },{
-        "type":4,
-        "platform":"facebook",
-        "payload":{
-          "facebook":{
-            "text":"Is it related to your Auto, Home or Businessowners policy?",
-            "quick_replies_img":[{
-              "content_type":"text",
-              "title":"Single Hung",
-              "payload":"Single Hung"
-            }]}}}]
-      
-    };
+        "speech": "Hold on for a moment while we get the details of the damaged glass."
+      }
+    ]
+
+    }
     return res.json(msg);
   }
   else if(intentFrom === 'input.windows') {
-    msg = {
-      "speech": "",
-      "displayText": "",
-      "messages": [{
-        "type":4,
-        "platform":"facebook",
-        "payload":{
-          "facebook":{
-            "text":"Can you validate the type of glass? You can select another one if the suggested glass type is not correct",
-            "quick_replies_img":[{
-              "content_type":"text",
-              "title":"Float Glass",
-              "payload":"Float Glass"
-            }]}}}]
-      
-    };
+    msg = {"speech": "",
+    "messages": [
+           {
+        "type": 2,
+        "platform": "facebook",
+        "title": "Can you validate the type of glass? You can select another one if the suggested glass type is not correct",
+        "replies": [
+          "Float Glass"
+        ]
+      }
+    ]
+
+    }
     return res.json(msg);
   }
    else if(intentFrom === 'upload_image') {
