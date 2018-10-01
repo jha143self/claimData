@@ -225,6 +225,9 @@ app.post("/fulfillment", async function (req, res) {
     //     "speech": "That's it John! We're all set! Here you go:"
     //   },
     msg={
+      "speech": "",
+       "displayText": "",
+       "messages": [{
         "type": 0,
         "platform": "facebook",
         "speech": "Your Claim number is CL  "+claimno
