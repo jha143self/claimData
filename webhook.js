@@ -216,7 +216,7 @@ app.post("/fulfillment", async function (req, res) {
   else if(intentFrom === 'input.GlassSize') {
     claimno=CreateClaim(req,res);
    var price=priceConverter(req,res);
-   console(claimno+"Rakkesh Jha"+price);
+   console.log(claimno+"Rakkesh Jha"+price);
    if(claimno!=null && price!=null){
    msg={
       "speech": "",
