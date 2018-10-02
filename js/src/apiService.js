@@ -162,14 +162,10 @@ define(['jquery', 'settings', 'utils', 'messageTemplates', 'cards', 'uuid'],
                                         response.result.fulfillment.messages[i].replies;
                                         isQuickReplyFromApiai = true;
                                            }else if(response.result.fulfillment.messages[i].replies && response.result.fulfillment.messages[i].replies.indexOf("Single Hung") != -1){
-                                            response.result.fulfillment.messages[i].replies=['Single Hung','Double Hung','Arched','Awning','Bay','Bow','Casement','Egress','Garden','Glass Block',
-                                            'Hopper','Jalousie','Picture','Round Circle','Skylight','Sliding','Storm','Transom']
                                             multiplequickreplyfromapiai=true;
                                            }
                                            else if(response.result.fulfillment.messages[i].replies && response.result.fulfillment.messages[i].replies.indexOf("Float Glass") != -1){
-                                            response.result.fulfillment.messages[i].replies=['Float Glass','Safety Laminated Glass','Obscured Glass','Annealed Glass','Tinted Glass',
-                                            'Tempered Glass','Insulated Glass','Mirrored Glass','Low-E Glass','Wired Glass','Heat Strengthened Glass']
-                                            multiplequickreplyfromapiai=true;
+                                             multiplequickreplyfromapiai=true;
                                            }}
                                     if (response.result.fulfillment.messages[i].type == 3) {
                                         isImage = true;
