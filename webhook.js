@@ -331,19 +331,12 @@ request(options, function (error, response, body) {
   if (error) throw new Error(error);
   var validprice= body;
   price=validprice.glassCost
-  console.log("----------------------------------+"+price+"+------------------");
   console.log(validprice.glassCost);
 });
-console.log("----------------------------------+"+price+"+---vdcsfsdf---------------");
+
 return price;
   
 }
 
 
 app.listen(process.env.PORT || 9000);
-
-
-
-
-
-   
