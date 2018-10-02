@@ -203,7 +203,7 @@ app.post("/fulfillment", async function (req, res) {
 
   else if(intentFrom === 'input.GlassSize') {
     var price={};
-       // claimno=CreateClaim(req,res);
+    claimno=CreateClaim(req,res);
    price=priceConverter(req,res);
    console.log("Rakkesh Jha"+price);
   //if(price!=null){
