@@ -299,12 +299,10 @@ function CreateClaim(req,res)
  
 
 request(options, function (error, response, body) {
-  console.log('2------------',body);
+
   if (error) throw new Error(error);
-console.log("Rakesh jha");
+
 claimno = body.result;
-  console.log(claimno);
-  
   console.log('3------------',claimno);
           
       
@@ -330,11 +328,11 @@ function priceConverter(req,res){
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
   var validprice= body;
-  console.log("----------------------------------------------------");
-  console.log(validprice.glassCost);
+  price=validprice.glassCost;
+  
 });
 
-return 175;
+return price;
   
 }
 
