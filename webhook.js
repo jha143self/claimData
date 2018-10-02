@@ -359,8 +359,8 @@ function priceConverter(req,res){
   gSize
   glassType
   windowType
-  console.log((gSize&&glassType&&windowType!==null));
-  if(gSize&&glassType&&windowType!==null){
+  console.log((gSize!==null+"rak"+glassType!==null+"dkjasd"+windowType!==null));
+  if(gSize!==null && glassType!==null && windowType!==null){
   var options = { method: 'POST',
   url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
   headers: 
