@@ -182,7 +182,7 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }
 
-  else if(intentFrom === 'upload_image') {
+  else if(intentFrom === 'input.damaged') {
     msg = {"speech": "Hold on for a moment while we get the details of the damaged glass",
     "messages": [
        
