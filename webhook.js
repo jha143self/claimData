@@ -335,7 +335,7 @@ request(options, function (error, response, body) {
   console.log(validprice.glassCost);
 });
 
-return 175;
+return price;
   
 }
 
