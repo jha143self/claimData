@@ -336,7 +336,7 @@ request(options, function (error, response, body) {
   console.log("------------VVVVVVVV--------");
   }
  
-  return price.glassCost;
+  return 176;
       
 });
 
