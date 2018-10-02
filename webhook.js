@@ -356,6 +356,11 @@ return claimno;
 }
 
 function priceConverter(req,res){
+  GlassSize
+  glassType
+  windowType
+  console.log((GlassSize&&glassType&&windowType));
+  if(GlassSize&&glassType&&windowType){
   var options = { method: 'POST',
   url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
   headers: 
@@ -366,8 +371,8 @@ function priceConverter(req,res){
    { height: 70,
      width: 30,
      thickness: 33,
-     glassType: 'Safety Laminated Glass',
-     windowType: 'Double Hung Windows' },
+     glassType: glassType,
+     windowType: windowType },
   json: true };
 
 request(options, function (error, response, body) {
@@ -376,6 +381,7 @@ request(options, function (error, response, body) {
   price=validprice.glassCost
   console.log(validprice.glassCost);
 });
+  }
 
 return price;
   
