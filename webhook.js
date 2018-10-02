@@ -220,7 +220,7 @@ app.post("/fulfillment", async function (req, res) {
     }
     return res.json(msg);
   }
-  else if(intentFrom === 'input.sizeOfglass') {
+  else if(intentFrom === 'input.Glass') {
     glassType=intentParam.GlassType;
     
     console.log(glassType);
