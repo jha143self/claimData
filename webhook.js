@@ -359,7 +359,7 @@ function priceConverter(req,res){
   gSize
   glassType
   windowType
-  console.log((gSize&&glassType&&windowType));
+  console.log((gSize&&glassType&&windowType!==null));
   if(gSize&&glassType&&windowType){
   var options = { method: 'POST',
   url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
