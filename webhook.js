@@ -206,7 +206,7 @@ app.post("/fulfillment", async function (req, res) {
        // claimno=CreateClaim(req,res);
    price=priceConverter(req,res);
    console.log("Rakkesh Jha"+price);
-   if(price!=null){
+  //if(price!=null){
    msg={
       "speech": "",
        "displayText": "",
@@ -222,7 +222,7 @@ app.post("/fulfillment", async function (req, res) {
       }]
       
     };
-  }
+  
     return res.json(msg);
   }
 
@@ -334,7 +334,7 @@ request(options, function (error, response, body) {
   console.log("----------------------------------+"+price+"+------------------");
   console.log(validprice.glassCost);
 });
-
+console.log("----------------------------------+"+price+"+---vdcsfsdf---------------");
 return price;
   
 }
