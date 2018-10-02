@@ -190,8 +190,9 @@ app.post("/fulfillment", async function (req, res) {
           "type": 2,
           "platform": "facebook",
           "title": "Can you validate the type of window? You can select another one if the suggested window type is not correct",
-          "replies": ['Single Hung','Double Hung','Arched','Awning','Bay','Bow','Casement','Egress','Garden','Glass Block',
-          'Hopper','Jalousie','Picture','Round Circle','Skylight','Sliding','Storm','Transom']
+          "replies": [
+            "Single Hung"
+          ]
         }
       ]
   
@@ -210,8 +211,9 @@ app.post("/fulfillment", async function (req, res) {
         "type": 2,
         "platform": "facebook",
         "title": "Can you validate the type of glass? You can select another one if the suggested glass type is not correct",
-        "replies": ['Float Glass','Safety Laminated Glass','Obscured Glass','Annealed Glass','Tinted Glass',
-        'Tempered Glass','Insulated Glass','Mirrored Glass','Low-E Glass','Wired Glass','Heat Strengthened Glass']
+        "replies": [
+          "Float Glass"
+        ]
       }
     ]
 
