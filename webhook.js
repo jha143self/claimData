@@ -331,7 +331,7 @@ request(options, function (error, response, body) {
   if (error) throw new Error(error);
   var validprice= body;
   console.log("----------------------------------------------------");
-  console.log(validprice);
+  console.log(validprice.glassCost);
 });
 
 return 175;
