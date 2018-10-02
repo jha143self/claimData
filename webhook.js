@@ -221,9 +221,9 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }
   else if(intentFrom === 'input.sizeOfglass') {
-    windowType=intentParam.GlassType;
+    glassType=intentParam.GlassType;
     
-    console.log(windowType);
+    console.log(glassType);
     msg = {
       "speech": "",
       "displayText": "",
@@ -241,6 +241,9 @@ app.post("/fulfillment", async function (req, res) {
   else if(intentFrom === 'input.GlassSize') {
     gSize=intentParam.GlassSize;
     console.log(gSize);
+    console.log(glassType);
+    console.log(windowType);
+    console.log(lossDate);
     var price={};
     claimno=CreateClaim(req,res);
    price=priceConverter(req,res);
