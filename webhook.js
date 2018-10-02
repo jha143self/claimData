@@ -356,11 +356,11 @@ return claimno;
 }
 
 function priceConverter(req,res){
-  GlassSize
+  gSize
   glassType
   windowType
-  console.log((GlassSize&&glassType&&windowType));
-  if(GlassSize&&glassType&&windowType){
+  console.log((gSize&&glassType&&windowType));
+  if(gSize&&glassType&&windowType){
   var options = { method: 'POST',
   url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
   headers: 
