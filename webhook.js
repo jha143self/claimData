@@ -84,6 +84,7 @@ var width;
 var thickness;
 var glassType;
 var windowType;
+var gSize;
 
 app.post("/fulfillment", async function (req, res) {
 
@@ -165,6 +166,8 @@ app.post("/fulfillment", async function (req, res) {
   }
 
   else if(intentFrom === 'upload_image') {
+    lossDate=intentParam.date;
+    console.log(lossDate);
     msg = {
       "speech": "",
       "displayText": "",
@@ -178,7 +181,6 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }else if(intentFrom === 'input.damaged') {
     msg = {
-  
     "messages": [
      
       {
@@ -195,7 +197,7 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }
   else if(intentFrom === 'input.windows') {
-    windowType=intentParam;
+    windowType=intentParam.Windows;
     console.log(windowType);
     msg = {"speech": "",
     "messages": [
@@ -212,8 +214,22 @@ app.post("/fulfillment", async function (req, res) {
     }
     return res.json(msg);
   }
+  else if(intentFrom === 'input.Glass') {
+    glassType=intentParam.GlassType;
+    console.log(glassType);
+    msg = {
+      "messages":[{
+        "type":0,
+        "platform":"facebook",
+        "speech":"Input the correct size of the glass; Height (in cm) x Width (in cm) x Thickness (in mm)."
+      }]}
+
+    return res.json(msg);
+  }
 
   else if(intentFrom === 'input.GlassSize') {
+    gSize=intentParam.GlassSize;
+    console.log(gSize);
     var price={};
     claimno=CreateClaim(req,res);
    price=priceConverter(req,res);
