@@ -329,6 +329,7 @@ function priceConverter(req,res){
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
+  console.log(body.length);
   for(var i = 0; i < body.length; i++) {
     price=body[i];
   console.log("------------^^^^^^^^^^^^--------");
@@ -336,11 +337,11 @@ request(options, function (error, response, body) {
   console.log("------------VVVVVVVV--------");
   }
  
-  return 176;
+ 
       
 });
 
-
+return 176;
   
 }
 
