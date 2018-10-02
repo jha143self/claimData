@@ -89,11 +89,9 @@ var errHandler = function(err) {
 function main() {
     
     var dataPromise = CreateClaim();
-    // Get user details after that get followers from URL
+    
     dataPromise.then(JSON.parse, errHandler)
                .then(function(result) {
-                   // userDetails = result;
-                    // Do one more async operation here
                     var anotherPromise = priceConverter().then(JSON.parse);
                     return anotherPromise;
                 }, errHandler)
