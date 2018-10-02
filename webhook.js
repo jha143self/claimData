@@ -329,12 +329,12 @@ function priceConverter(req,res){
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-  var price = JSON.stringify(body.glassCost);
+  var validprice= body;
   console.log("----------------------------------------------------");
-  
+  console.log(validprice);
 });
 
-return price;
+return 175;
   
 }
 
