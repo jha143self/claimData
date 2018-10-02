@@ -200,19 +200,7 @@ app.post("/fulfillment", async function (req, res) {
     }
     return res.json(msg);
   }
-   else if(intentFrom === 'upload_image') {
-    msg = {
-      "speech": "",
-      "displayText": "",
-      "messages": [{
-        "type": 0,
-        "platform": "facebook",
-        "speech": "Please upload the picture of the damaged glass?"
-      }]
-      
-    };
-    return res.json(msg);
-  }
+
   else if(intentFrom === 'input.GlassSize') {
    // claimno=CreateClaim(req,res);
    var price=priceConverter(req,res);
@@ -342,6 +330,7 @@ request(options, function (error, response, body) {
   if (error) throw new Error(error);
 
   var price = body.result;
+  console.log("come in side or not");
   console.log(body.result);
   
   return price;
