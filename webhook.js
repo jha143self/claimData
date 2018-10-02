@@ -306,10 +306,10 @@ claimno = body.result;
   console.log(claimno);
   
   console.log('3------------',claimno);
-          return claimno;
+          
       
 });
-
+return claimno;
 }
 var price;
 function priceConverter(req,res){
@@ -329,16 +329,9 @@ function priceConverter(req,res){
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-  console.log(body.length);
-  for(var i = 0; i < body.length; i++) {
-    price=body[i];
-  console.log("------------^^^^^^^^^^^^--------");
-  console.log(price);
-  console.log("------------VVVVVVVV--------");
-  }
- 
- 
-      
+  console.log(body);
+  console.log("----------------------------------------------------");
+  console.log(response);
 });
 
 return 176;
