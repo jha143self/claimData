@@ -330,7 +330,9 @@ request(options, function (error, response, body) {
   if (error) throw new Error(error);
   
   var price = body.glassCost;
-  
+  console.log(body);
+  console.log("--------------------");
+  console.log(response);
   return price;
       
 });
