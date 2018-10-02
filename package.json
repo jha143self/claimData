@@ -17,6 +17,7 @@
     "ejs": "^2.6.1",
     "express": "^4.15.4",
     "express-session": "1.15.6",
+    "promise": "^8.0.2",
     "redis": "^2.8.0",
     "request": "^2.88.0",
     "sentiment": "^5.0.1",

@@ -74,6 +74,16 @@ app.get('/chat', function (req, res) {
 
 
 var claimno;
+var lossDate;
+var lossType;
+var lossCause;
+var description;
+var price;
+var height;
+var width;
+var thickness;
+var glassType;
+var windowType;
 
 app.post("/fulfillment", async function (req, res) {
 
@@ -185,6 +195,8 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }
   else if(intentFrom === 'input.windows') {
+    windowType=intentParam;
+    console.log(windowType);
     msg = {"speech": "",
     "messages": [
            {
@@ -312,7 +324,7 @@ claimno = body.result;
 });
 return claimno;
 }
-var price;
+
 function priceConverter(req,res){
   var options = { method: 'POST',
   url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
