@@ -218,7 +218,7 @@ app.post("/fulfillment", async function (req, res) {
         "type": 0,
         "platform": "facebook",
         "speech": "Based on the quotes received from the market, you are entitled to a claims payment of "+price+
-        ". Based on the quotes received from the market, you are entitled to a claims payment of USD 650. "
+        ". We've added an additional 10% to the market rates to cover any additional expenses that you may incur. "
       }]
       
     };
@@ -329,12 +329,12 @@ function priceConverter(req,res){
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-  console.log(body);
+  var PriceDate = JSON.stringify(body.glassCost);
   console.log("----------------------------------------------------");
-  console.log(response);
+  
 });
 
-return 176;
+return PriceDate;
   
 }
 
