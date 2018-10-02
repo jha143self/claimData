@@ -202,9 +202,10 @@ app.post("/fulfillment", async function (req, res) {
   }
 
   else if(intentFrom === 'input.GlassSize') {
-   // claimno=CreateClaim(req,res);
-   var price=priceConverter(req,res);
-   console.log("Rakkesh Jha"+price);
+    var price={};
+       // claimno=CreateClaim(req,res);
+   price=priceConverter(req,res);
+   console.log("Rakkesh Jha"+price.glassCost);
    if(price!=null){
    msg={
       "speech": "",
@@ -310,7 +311,7 @@ claimno = body.result;
 });
 
 }
-
+var price;
 function priceConverter(req,res){
   var options = { method: 'POST',
   url: 'http://35.154.116.87:7999/aa/getMockGlassCost',
@@ -328,16 +329,14 @@ function priceConverter(req,res){
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-  var string = JSON.stringify(body);
+  for(var i = 0; i < body.length; i++) {
+    price=body[i];
   console.log("------------^^^^^^^^^^^^--------");
-  console.log(string);
+  console.log(price);
   console.log("------------VVVVVVVV--------");
-  var price = body.glassCost;
-  
-  
-  console.log("--------------------");
-  console.log(response.body[0]);
-  return body;
+  }
+ 
+  return price.glassCost;
       
 });
 
