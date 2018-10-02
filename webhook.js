@@ -205,6 +205,7 @@ app.post("/fulfillment", async function (req, res) {
     var price={};
     claimno=CreateClaim(req,res);
    price=priceConverter(req,res);
+   console.log("claimno Jha"+claimno);
    console.log("Rakkesh Jha"+price);
   //if(price!=null){
    msg={
