@@ -164,8 +164,9 @@ app.post("/fulfillment", async function (req, res) {
     };
     return res.json(msg);
   }
+ 
+  else if(intentFrom === 'input.date') {
 
-  else if(intentFrom === 'upload_image') {
     lossDate=intentParam.date;
     console.log(lossDate);
     msg = {
@@ -179,23 +180,27 @@ app.post("/fulfillment", async function (req, res) {
       
     };
     return res.json(msg);
-  }else if(intentFrom === 'input.damaged') {
-    msg = {
-    "messages": [
-     
-      {
-        "type": 2,
-        "platform": "facebook",
-        "title": "Can you validate the type of window? You can select another one if the suggested window type is not correct",
-        "replies": [
-          "Single Hung"
-        ]
-      }
-    ]
+  }
 
-    }
+  else if(intentFrom === 'upload_image') {
+    msg = {"speech": "Hold on for a moment while we get the details of the damaged glass",
+    "messages": [
+       
+        {
+          "type": 2,
+          "platform": "facebook",
+          "title": "Can you validate the type of window? You can select another one if the suggested window type is not correct",
+          "replies": [
+            "Single Hung"
+          ]
+        }
+      ]
+  
+      };
     return res.json(msg);
   }
+ 
+  
   else if(intentFrom === 'input.windows') {
     windowType=intentParam.Windows;
     console.log(windowType);
@@ -214,18 +219,22 @@ app.post("/fulfillment", async function (req, res) {
     }
     return res.json(msg);
   }
-  else if(intentFrom === 'input.Glass') {
-    glassType=intentParam.GlassType;
-    console.log(glassType);
+  else if(intentFrom === 'input.sizeOfglass') {
+    windowType=intentParam.Windows;
+    console.log(windowType);
     msg = {
-      "messages":[{
-        "type":0,
-        "platform":"facebook",
-        "speech":"Input the correct size of the glass; Height (in cm) x Width (in cm) x Thickness (in mm)."
-      }]}
-
+      "speech": "",
+      "displayText": "",
+      "messages": [{
+        "type": 0,
+        "platform": "facebook",
+        "speech": "Input the correct size of the glass; Height (in cm) x Width (in cm) x Thickness (in mm)"
+      }]
+      
+    };
     return res.json(msg);
   }
+  
 
   else if(intentFrom === 'input.GlassSize') {
     gSize=intentParam.GlassSize;
