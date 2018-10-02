@@ -202,6 +202,7 @@ app.post("/fulfillment", async function (req, res) {
  
   
   else if(intentFrom === 'input.windows') {
+
     windowType=intentParam.Windows;
     console.log(windowType);
     msg = {"speech": "",
@@ -220,7 +221,8 @@ app.post("/fulfillment", async function (req, res) {
     return res.json(msg);
   }
   else if(intentFrom === 'input.sizeOfglass') {
-    windowType=intentParam.Windows;
+    windowType=intentParam.GlassType;
+    
     console.log(windowType);
     msg = {
       "speech": "",
