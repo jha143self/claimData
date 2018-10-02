@@ -328,12 +328,16 @@ function priceConverter(req,res){
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-  
+  var string = JSON.stringify(body);
+  console.log("------------^^^^^^^^^^^^--------");
+  console.log(string);
+  console.log("------------VVVVVVVV--------");
   var price = body.glassCost;
-  console.log(body[0]);
+  
+  
   console.log("--------------------");
   console.log(response.body[0]);
-  return price;
+  return body;
       
 });
 
