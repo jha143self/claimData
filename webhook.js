@@ -328,11 +328,11 @@ function priceConverter(req,res){
 
 request(options, function (error, response, body) {
   if (error) throw new Error(error);
-
+  console.log(body);
   var price = body.result;
   console.log("come in side or not");
-  console.log(body.result);
-  
+  console.log(error);
+  console.log(response);
   return price;
       
 });
