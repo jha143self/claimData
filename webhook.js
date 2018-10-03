@@ -158,11 +158,41 @@ app.post("/fulfillment", async function (req, res) {
       "messages": [{
         "type": 0,
         "platform": "facebook",
-        "speech": "Thanks for the details! Please hold on, while we check your coverage details <br><br>Happy to inform that your broken window is covered under your Homeowners policy <br><br> We'll need some more information to help you with the claim processing <br><br>When did the accident occur ? example It happened on 31st Aug / Yesterday / Today / Day"
+        "speech": "Thanks for the details! Please hold on, while we check your coverage details <br><br>Happy to inform that your broken window is covered under your Homeowners policy <br><br> We'll need some more information to help you with the claim processing <br><br>When did the accident occur ? eg- It happened on 31st Aug / Yesterday / Today"
       }]
       
     };
     return res.json(msg);
+    setTimeout(function(){
+      msg = {
+        "speech": "",
+        "displayText": "",
+        "messages": [{
+          "type": 0,
+          "platform": "facebook",
+          "speech": "Happy to inform that your broken window is covered under your Homeowners policy <br><br> We'll need some more information to help you with the claim processing 
+          
+        }]
+        
+      };
+      return res.json(msg);
+    },1000);
+    
+    setTimeout(function(){
+      msg = {
+        "speech": "",
+        "displayText": "",
+        "messages": [{
+          "type": 0,
+          "platform": "facebook",
+          "speech": "When did the accident occur ? eg- It happened on 31st Aug / Yesterday / Today"
+          
+        }]
+        
+      };
+      return res.json(msg);
+    },1000);
+    
   }
  
   else if(intentFrom === 'input.date') {
